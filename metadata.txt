@@ -1,19 +1,15 @@
-# This file contains metadata for your plugin.
-
-# This file should be included when you package your plugin.# Mandatory items:
-
 [general]
 name=Select Matching Features
-qgisMinimumVersion=3.0
-description=Clicking a feature will select all features in layer with same attribute value
-version=0.1
-author=Matt
-email=m_needle@hotmail.com
+qgisMinimumVersion=3.34
+description=Select matching features in a layer with a mouse click.
+version=1.0
+author=Matt Needle
+email=matt.needle.nl@gmail.com
 
-about=Clicking a feature will select all features in layer with same attribute value
+about=Click a feature to select or filter all features in layer with same attribute value. Target layer and field are configurable via a simple GUI. Advanced options allow usage of operators.
 
-tracker=http://bugs
-repository=https://github.com/matt-needle/select_matching_features_on_click
+tracker=https://github.com/matt-needle/qgis-select_matching_features/issues
+repository=https://github.com/matt-needle/qgis-select_matching_features
 # End of mandatory metadata
 
 # Recommended items:
@@ -23,9 +19,9 @@ hasProcessingProvider=no
 # changelog=
 
 # Tags are comma separated with spaces allowed
-tags=python
+tags=python, select, matching, filter
 
-homepage=http://homepage
+homepage=https://github.com/matt-needle/qgis-select_matching_features
 category=Vector
 icon=select_icon.png
 # experimental flag
@@ -40,7 +36,7 @@ deprecated=False
 # plugin_dependencies=
 
 Category of the plugin: Raster, Vector, Database or Web
-# category=
+# category=Vector
 
 # If the plugin can run on QGIS Server.
 server=False
