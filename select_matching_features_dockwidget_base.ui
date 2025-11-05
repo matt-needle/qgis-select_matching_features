@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SelectMatchingFeaturesDockWidgetBase</class>
+ <widget class="QDockWidget" name="SelectMatchingFeaturesDockWidgetBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>350</width>
+    <height>325</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Select Matching Features</string>
+  </property>
+  <widget class="QWidget" name="dockWidgetContents">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="labelLayer">
+      <property name="text">
+       <string>Layer on which to match features</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QgsMapLayerComboBox" name="mLayerCombo"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="labelFieldToMatch">
+      <property name="text">
+       <string>Field to match</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QgsFieldComboBox" name="mFieldCombo"/>
+    </item>
+    <item>
+     <widget class="QgsCollapsibleGroupBox" name="grpAdvanced">
+      <property name="title">
+       <string>Advanced</string>
+      </property>
+      <property name="collapsed">
+       <bool>true</bool>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Comparison Operator:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioOpEqual">
+         <property name="text">
+          <string>= (equal)</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioOpNotEqual">
+         <property name="text">
+          <string>!= (not equal)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioOpLessThan">
+         <property name="text">
+          <string>&lt; (less than)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioOpGreaterThan">
+         <property name="text">
+          <string>&gt; (greater than)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioOpLessEqual">
+         <property name="text">
+          <string>&lt;= (less than or equal)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioOpGreaterEqual">
+         <property name="text">
+          <string>&gt;= (greater than or equal)</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBoxMode">
+      <property name="title">
+       <string>Selection Mode</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QRadioButton" name="radioSelectMatching">
+         <property name="text">
+          <string>Select</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioHideNonMatching">
+         <property name="text">
+          <string>Filter</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="chkSelectFiltered">
+      <property name="text">
+       <string>Select filtered features</string>
+      </property>
+      <property name="toolTip">
+       <string>Automatically select all features in the current filter</string>
+      </property>
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnShowAllFeatures">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="toolTip">
+       <string>Clear the current selection or filter</string>
+      </property>
+      <property name="text">
+       <string>Clear Selection</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnActivateTool">
+      <property name="text">
+       <string>Activate Selection Tool</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>select_icon.png</normaloff>select_icon.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>24</width>
+        <height>24</height>
+       </size>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsFieldComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgsfieldcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsMapLayerComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgsmaplayercombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsCollapsibleGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header>qgis.gui</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
