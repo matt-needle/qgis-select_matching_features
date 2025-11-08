@@ -4,7 +4,7 @@
 ### How to use
 - Find the tool in the Selection toolbar  
   <img width="275" height="68" alt="image" src="https://github.com/user-attachments/assets/98de45a5-5564-402b-ab58-709b7114972f" />
-- A pane will appear in the bottom right of the QGIS window (this can be redocked in a different place)
+- A pane will appear in the bottom right of the QGIS window (the can be re-docked in a different place)
 - Select the layer and the field to match using the menus
 - Click <kbd>Activate Selection Tool</kbd>
 - Click a feature on the map to select all features with a matching attribute value
