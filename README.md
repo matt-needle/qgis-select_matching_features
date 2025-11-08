@@ -15,5 +15,7 @@
 
 ### Known issues
 - There is a bug where if the tool is active and another map tool is activated (Pan, Identify, etc) the Select Matching Features tool does not automatically deactivate
-- To reactivate the tool in this case, the <kbd>Deactivate Selection Tool</kbd> button must be clicked followed by the <kbd>Activate Selection Tool</kbd> button
-- This bug will be addressed in the next version
+  - To reactivate the tool in this case, the <kbd>Deactivate Selection Tool</kbd> button must be clicked followed by the <kbd>Activate Selection Tool</kbd> button
+  - This bug will be addressed in the next version
+- If the target layer has an active edit session filtering will not be applied. This is normal QGIS behaviour but there is no indication from the tool why the filter failed.
+  - This will be addressed in the next version with a message to indicate why the filter has not beein applied  
