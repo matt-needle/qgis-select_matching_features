@@ -23,10 +23,6 @@ class SelectionManager:
         Apply a subset string filter to show only currently selected features.
         Uses the layer's primary key FIELD VALUES (not internal feature IDs).
         
-        **BUG FIX**: Previous code used layer.selectedFeatureIds() which returns
-        internal QGIS IDs (0, 1, 2...), not the actual primary key field values.
-        This version correctly extracts the actual PK field values from features.
-        
         Args:
             layer: QgsVectorLayer to filter
             
@@ -38,6 +34,9 @@ class SelectionManager:
         """
         if not layer:
             return False, 0, "No layer provided"
+        
+        if SelectionManager.has_edit_session(layer):
+            return False, 0, "Filter cannot be applied: Layer has an active edit session"
         
         selected_features = layer.selectedFeatures()
         if not selected_features:
@@ -161,6 +160,20 @@ class SelectionManager:
         except Exception as e:
             PluginLogger.error(f"Error selecting filtered features: {str(e)}")
             return -1
+        
+    @staticmethod
+    def has_edit_session(layer):
+        """
+        Check if layer has no active edit session
+
+        Args: 
+            layer QgsVectorLayer to check
+        
+        Returns:
+            bool: True if no edit session is active, False otherwise
+        """
+        return layer.isEditable()
+        
     
     @staticmethod
     def has_active_filter(layer):
