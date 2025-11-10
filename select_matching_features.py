@@ -298,15 +298,16 @@ class SelectMatchingFeatures:
             # Clear the info message since our tool is no longer active
             self.message_handler.clear()
             
+            # Clear the highlight for the reference feature
+            self.highlight_manager.clear_all()
+            
+            # Clear the reference feature
+            self.reference_feature = None
+            
             # Note: We do NOT clear the selection or filter here
             # The selection/filter should remain active even when another tool is selected
             
-            layer = self.dockwidget.get_current_layer()
-            if layer and SelectionManager.has_active_filter(layer):
-                SelectionManager.clear_filter(layer)
-                self.dockwidget.enable_show_all_button(False)
-        
-        PluginLogger.info("Selection tool deactivated")
+            PluginLogger.info("Selection tool deactivated - selection/filter preserved")
 
     def perform_selection(self, feature, field_name):
         """
