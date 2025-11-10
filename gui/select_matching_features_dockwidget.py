@@ -1,26 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-/***************************************************************************
- SelectMatchingFeaturesDockWidget
-                                 A QGIS plugin
- Clicking a feature will select all features in layer with same attribute value
-                             -------------------
-        begin                : 2022-01-29
-        git sha              : $Format:%H$
-        copyright            : (C) 2022 by Matt
-        email                : m_needle@hotmail.com
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
-"""
-
 import os
 from qgis.PyQt import uic
 from qgis.PyQt.QtWidgets import QDockWidget
@@ -122,13 +100,13 @@ class SelectMatchingFeaturesDockWidget(QDockWidget, FORM_CLASS):
         """Handle when selection mode changes"""
         layer = self.get_current_layer()
 
-        # Check if we're switching TO filter mode FROM select mode
+        # Check if switching to filter mode from select mode
         if self.radioHideNonMatching.isChecked() and layer:
             if layer.selectedFeatureCount() > 0:
                 # Emit signal to main plugin to apply filter to current selection
                 self.applyFilterToSelection.emit()
         
-        # Check if we're switching TO select mode FROM filter mode
+        # Check if switching to select mode from filter mode
         elif self.radioSelectMatching.isChecked() and layer:
             if layer.subsetString():
                 # There's an active filter - emit signal to clear it and select filtered features

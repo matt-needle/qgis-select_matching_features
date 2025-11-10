@@ -51,8 +51,7 @@ class SelectionManager:
             # Get the primary key field name
             pk_field_name = layer.fields()[pk_indexes[0]].name()
             
-            # BUG FIX: Extract ACTUAL primary key field values from features
-            # (not internal QGIS feature IDs)
+            # Extract primary key field values from features
             pk_values = []
             for feature in selected_features:
                 pk_value = feature[pk_field_name]
@@ -66,14 +65,12 @@ class SelectionManager:
             if not pk_values:
                 return False, 0, "No valid primary key values found in selected features"
             
-            # Determine if values are strings (need quoting) or numeric
+            # Determine if values are strings or numeric
             first_value = pk_values[0]
             if isinstance(first_value, str):
-                # String values need to be quoted and escaped
                 escaped_values = [value.replace("'", "''") for value in pk_values]
                 value_list = ','.join([f"'{value}'" for value in escaped_values])
             else:
-                # Numeric values don't need quoting
                 value_list = ','.join(map(str, pk_values))
             
             # Build and apply the filter
@@ -236,7 +233,7 @@ class SelectionManager:
             return False, 0, "No active filter to clear"
         
         try:
-            # Get IDs of currently filtered features BEFORE clearing filter
+            # Get IDs of currently filtered features before clearing filter
             filtered_ids = SelectionManager.get_filtered_feature_ids(layer)
             
             if not filtered_ids:

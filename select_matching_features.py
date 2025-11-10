@@ -62,7 +62,7 @@ class CustomIdentifyTool(QgsMapToolIdentifyFeature):
         if not self._target_layer:
             return
 
-        # Identify all features at this point in our target layer
+        # Identify all features at this point in target layer
         results = self.identify(event.x(), event.y(), [self._target_layer], QgsMapToolIdentify.TopDownAll)
 
         if results:
@@ -289,7 +289,7 @@ class SelectMatchingFeatures:
         Args:
             new_tool: The newly activated map tool
         """
-        # Check if our tool was active but is no longer the current tool
+        # Check if tool was active but is no longer the current tool
         if self.map_tool is not None and new_tool != self.map_tool:
             # Update the button state to reflect that our tool is no longer active
             if self.dockwidget:
@@ -304,9 +304,7 @@ class SelectMatchingFeatures:
             # Clear the reference feature
             self.reference_feature = None
             
-            # Note: We do NOT clear the selection or filter here
-            # The selection/filter should remain active even when another tool is selected
-            
+            # The selection/filter should remain active even when another tool is selected            
             PluginLogger.info("Selection tool deactivated - selection/filter preserved")
 
     def perform_selection(self, feature, field_name):

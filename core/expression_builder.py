@@ -76,7 +76,6 @@ class ExpressionBuilder:
         Returns:
             tuple: (expression, display_value)
         """
-        # Escape single quotes by doubling them (SQL standard)
         escaped_value = value.replace("'", "''")
         expr = f'"{field_name}" {operator} \'{escaped_value}\''
         display_value = f"'{value}'"

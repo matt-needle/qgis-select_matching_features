@@ -45,7 +45,7 @@ class HighlightManager:
             color = QColor(255, 50, 0)  # Default orange
         
         highlight.setColor(color)
-        highlight.setFillColor(QColor(0, 0, 0, 0))  # Transparent fill
+        highlight.setFillColor(QColor(0, 0, 0, 0))
         highlight.setWidth(width)
         highlight.show()
         
