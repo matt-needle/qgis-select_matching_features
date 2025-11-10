@@ -120,6 +120,9 @@ class SelectMatchingFeatures:
         self.message_handler = MessageHandler(iface)
         self.settings_manager = SettingsManager()
         self.highlight_manager = HighlightManager(iface.mapCanvas())
+        
+        # Connect to map tool changed signal to detect when another tool is activated
+        self.iface.mapCanvas().mapToolSet.connect(self.on_map_tool_changed)
 
         # Initialize locale
         if QSettings().value('locale/overrideFlag', type=bool):
@@ -171,6 +174,12 @@ class SelectMatchingFeatures:
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
+        # Disconnect map tool signal
+        try:
+            self.iface.mapCanvas().mapToolSet.disconnect(self.on_map_tool_changed)
+        except:
+            pass  # Signal might not be connected
+        
         self.iface.removePluginVectorMenu(self.tr('&Select Matching Features'), self.action)
         
         if self.selection_toolbar:
@@ -268,6 +277,29 @@ class SelectMatchingFeatures:
         
         if self.dockwidget:
             self.dockwidget.set_tool_active(False)
+
+    def on_map_tool_changed(self, new_tool):
+        """
+        Handle when the map tool changes in QGIS.
+        
+        This ensures that if another map tool is activated (Pan, Identify, etc.),
+        the plugin's button state is updated to reflect that our tool is no longer active.
+        However, the selection/filter remains active as required.
+        
+        Args:
+            new_tool: The newly activated map tool
+        """
+        # Check if our tool was active but is no longer the current tool
+        if self.map_tool is not None and new_tool != self.map_tool:
+            # Update the button state to reflect that our tool is no longer active
+            if self.dockwidget:
+                self.dockwidget.set_tool_active(False)
+            
+            # Clear the info message since our tool is no longer active
+            self.message_handler.clear()
+            
+            # Note: We do NOT clear the selection or filter here
+            # The selection/filter should remain active even when another tool is selected
             
             layer = self.dockwidget.get_current_layer()
             if layer and SelectionManager.has_active_filter(layer):
